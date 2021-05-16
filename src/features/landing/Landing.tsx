@@ -1,6 +1,7 @@
 import { Carousel } from "antd";
 import React, { useEffect, useState } from "react";
 import MainLayout from "../../common/mainLayout/MainLayout";
+import Title from "../../common/text/Title";
 import { buildsService } from "../../core/api/builds/buildsService";
 import { Build } from "../../core/api/builds/models";
 import BuildCard from "../buildCard/BuildCard";
@@ -19,6 +20,7 @@ const Landing: React.FC = () => {
 
   return (
     <MainLayout>
+      <Title size="huge">Znajdź coś dla siebie</Title>
       <TagCloud />
       <Carousel autoplay slidesToShow={3} pauseOnHover dots={false}>
         {builds &&

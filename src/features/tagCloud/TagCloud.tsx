@@ -1,6 +1,7 @@
 import { Col, Row } from "antd";
 import CheckableTag from "antd/lib/tag/CheckableTag";
 import React, { useState } from "react";
+import { TagTitle } from "./styles";
 
 const tagsData = [
   "Office",
@@ -27,14 +28,14 @@ const TagCloud: React.FC = () => {
 
   return (
     <Row>
-      <Col span={12} offset={6}>
+      <Col span={8} offset={8}>
         {tagsData.map((x) => (
           <CheckableTag
             key={x}
             checked={selectedTags.indexOf(x) > -1}
             onChange={(checked) => handleTagsChange(x, checked)}
           >
-            {x}
+            <TagTitle checked={selectedTags.indexOf(x) > -1}>{x}</TagTitle>
           </CheckableTag>
         ))}
       </Col>

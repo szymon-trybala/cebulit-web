@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Layout } from "antd";
 
 export const SiteLayout = styled(Layout)`
-  height: 100vh;
 `;
 
 export const SiteLogo = styled.div`
