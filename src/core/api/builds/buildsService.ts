@@ -1,7 +1,7 @@
 import {Build} from "./models";
 
 async function getAll(): Promise<Build[]> {
-    const response = await fetch("api/builds/getAll", {
+    const response = await fetch("Builds", {
         method: "GET",
         headers: {
             Accept: "application/json",
