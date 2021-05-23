@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "antd";
 import { Build } from "../../core/api/builds/models";
-import { CarouselCard } from "./styles";
+import { BuildCardImage, CarouselCard } from "./styles";
 import BuildCardDescription from "./BuildCardDescription";
 
 interface BuildCardProps {
@@ -13,8 +13,8 @@ const BuildCard: React.FC<BuildCardProps> = ({ build }) => {
     <div>
       <CarouselCard
         cover={
-          <img
-            alt="cover"
+          <BuildCardImage
+            preview={false}
             src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
           />
         }

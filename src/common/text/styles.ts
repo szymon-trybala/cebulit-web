@@ -7,17 +7,20 @@ export const TitleContainer = styled.div`
 
 export const TitleGradient = styled(Text)`
   font-weight: 500;
+  line-height: 120%;
   font-size: clamp(3rem, -0.875rem + 8.333vw, 8rem);
-  background-image: -webkit-linear-gradient(45deg, #f3ec78, #af4261);
+  background-image: -webkit-linear-gradient(45deg, #edc7b7, #ac3b61);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline-block;
 `;
 
 export const SubtitleGradient = styled(Text)`
   font-weight: bold;
-  font-size: clamp(1.5rem, -0.875rem + 8.333vw, 3rem);
-  background-color: blue;
-  background-image: -webkit-linear-gradient(to right, #30cfd0 0%, #330867 100%);
+  line-height: 120%;
+  font-size: clamp(1.5rem, -0.875rem + 8.333vw, 2.5rem);
+  background-image: -webkit-linear-gradient(45deg, #30cfd0, #123c69);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline-block;
 `;

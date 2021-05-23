@@ -2,13 +2,13 @@ import React from "react";
 import { SubtitleGradient, TitleContainer, TitleGradient } from "./styles";
 
 interface TitleProps {
-  size: "huge" | "big";
+  size: "xxl" | "xl" | "large";
 }
 
 const Title: React.FC<TitleProps> = ({ children, size }) => {
   return (
     <TitleContainer>
-      {size === "huge" ? (
+      {size === "xxl" ? (
         <TitleGradient>{children}</TitleGradient>
       ) : (
         <SubtitleGradient>{children}</SubtitleGradient>

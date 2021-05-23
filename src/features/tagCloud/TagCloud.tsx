@@ -1,23 +1,22 @@
 import { Col, Row } from "antd";
-import CheckableTag from "antd/lib/tag/CheckableTag";
 import React, { useState } from "react";
-import { TagTitle } from "./styles";
+import { CloudTag, TagCloudContainer, TagTitle } from "./styles";
 
 const tagsData = [
-  "Office",
-  "Movies",
-  "Quiet",
-  "Small",
-  "Programming",
-  "Virtual Machines",
-  "Gaming",
-  "Video editing",
-  "Lots of ram",
-  "Workstation",
+  "biuro",
+  "filmy",
+  "cisza",
+  "mały rozmiar",
+  "programowanie",
+  "maszyny wirtualne",
+  "esport",
+  "edycja wideo",
+  "dużo ramu",
+  "stacja robocza",
 ];
 
 const TagCloud: React.FC = () => {
-  const [selectedTags, setSelectedTags] = useState(["Office"]);
+  const [selectedTags, setSelectedTags] = useState(["biuro"]);
 
   const handleTagsChange = (tag: string, checked: boolean) => {
     const newSelectedTags = checked
@@ -28,16 +27,18 @@ const TagCloud: React.FC = () => {
 
   return (
     <Row>
-      <Col span={8} offset={8}>
-        {tagsData.map((x) => (
-          <CheckableTag
-            key={x}
-            checked={selectedTags.indexOf(x) > -1}
-            onChange={(checked) => handleTagsChange(x, checked)}
-          >
-            <TagTitle checked={selectedTags.indexOf(x) > -1}>{x}</TagTitle>
-          </CheckableTag>
-        ))}
+      <Col span={16} offset={4}>
+        <TagCloudContainer>
+          {tagsData.map((x) => (
+            <CloudTag
+              key={x}
+              checked={selectedTags.indexOf(x) > -1}
+              onChange={(checked) => handleTagsChange(x, checked)}
+            >
+              <TagTitle checked={selectedTags.indexOf(x) > -1}>{x}</TagTitle>
+            </CloudTag>
+          ))}
+        </TagCloudContainer>
       </Col>
     </Row>
   );

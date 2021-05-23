@@ -1,7 +1,6 @@
 import React from "react";
 import {
   SiteHeader,
-  SiteLayout,
   SiteContentContainer,
   SiteContent,
   SiteFooter,
@@ -11,7 +10,7 @@ import { Menu } from "antd";
 
 const MainLayout: React.FC = ({ children }) => {
   return (
-    <SiteLayout>
+    <>
       <SiteHeader>
         <SiteLogo />
         <Menu theme="light" mode="horizontal" defaultSelectedKeys={["1"]}>
@@ -23,7 +22,7 @@ const MainLayout: React.FC = ({ children }) => {
         <SiteContent>{children}</SiteContent>
       </SiteContentContainer>
       <SiteFooter>Cebulit ©2021 Szymon Trybała</SiteFooter>
-    </SiteLayout>
+    </>
   );
 };
 
