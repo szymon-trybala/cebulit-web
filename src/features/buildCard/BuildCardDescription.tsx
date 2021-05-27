@@ -27,9 +27,11 @@ const BuildCardDescription: React.FC<BuildCardDescriptionProps> = ({
         <CarouselCardDescItem>
           RAM: {build.memory.capacity} GB {build.memory.speed} MHz
         </CarouselCardDescItem>
-        <CarouselCardDescItem>
-          Karta graficzna: {build.graphicsCard.name}
-        </CarouselCardDescItem>
+        {build.graphicsCard && (
+          <CarouselCardDescItem>
+            Karta graficzna: {build.graphicsCard.name}
+          </CarouselCardDescItem>
+        )}
       </Col>
 
       <Col flex="auto">
