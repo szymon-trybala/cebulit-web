@@ -1,14 +1,35 @@
 import { Col, Row } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LoadingTagsSkeleton from "../../common/skeletons/LoadingTagsSkeleton";
 import { Tag } from "../../core/api/tags/models";
 import { tagsService } from "../../core/api/tags/tagsService";
-import useFetch from "../../core/hooks/useFetch";
 import { CloudTag, TagCloudContainer, TagTitle } from "./styles";
 
-const TagCloud: React.FC = () => {
-  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
-  const [tags, loading] = useFetch(tagsService.getAll);
+interface TagCloudProps {
+  selectedTags: Tag[];
+  onSelectedTagsChange: (newSelectedTags: Tag[]) => any;
+}
+
+const TagCloud: React.FC<TagCloudProps> = ({
+  selectedTags,
+  onSelectedTagsChange,
+}) => {
+  const [loading, setLoading] = useState(false);
+  const [tags, setTags] = useState<Tag[]>();
+
+  useEffect(() => {
+    const fetchTags = async () => {
+      setLoading(true);
+      try {
+        const data = await tagsService.getAll();
+        setLoading(false);
+        setTags(data);
+      } catch (error) {
+        setLoading(false);
+      }
+    };
+    fetchTags();
+  }, []);
 
   const handleTagsChange = (tag: Tag, checked: boolean) => {
     if (!selectedTags) return;
@@ -16,7 +37,7 @@ const TagCloud: React.FC = () => {
     const newSelectedTags = checked
       ? [...selectedTags, tag]
       : selectedTags.filter((x) => x !== tag);
-    setSelectedTags(newSelectedTags);
+    onSelectedTagsChange(newSelectedTags);
   };
 
   return (

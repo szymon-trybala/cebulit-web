@@ -1,15 +1,23 @@
 import { Build } from "./models";
 
-async function getAll(): Promise<Build[]> {
+interface TagMatchedBuildsParams {
+  tags: string[];
+}
+
+async function getTagMatched(
+  params?: TagMatchedBuildsParams
+): Promise<Build[]> {
   try {
-    const response = await fetch("Builds", {
-      method: "GET",
+    const response = await fetch("Builds/GetTagMatched", {
+      method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      body: params ? JSON.stringify(params) : undefined,
     });
-    if (!response || !response.ok) return Promise.reject(new Error("Błąd serwera"));
+    if (!response || !response.ok)
+      return Promise.reject(new Error("Błąd serwera"));
     else if (response.status === 401)
       return Promise.reject(new Error("Błąd autoryzacji użytkownika"));
 
@@ -22,5 +30,5 @@ async function getAll(): Promise<Build[]> {
 }
 
 export const buildsService = {
-  getAll,
+  getTagMatched,
 };
