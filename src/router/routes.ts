@@ -1,7 +1,7 @@
 export const routes = {
-    home: "/",
-    landing: "/landing",
-    login: "/login",
-    register: "/register",
-    list: "/list"
-}
+  landing: "/",
+  home: "/home",
+  login: "/login",
+  register: "/register",
+  list: "/list",
+};

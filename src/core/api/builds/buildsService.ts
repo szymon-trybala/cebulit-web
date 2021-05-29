@@ -8,10 +8,10 @@ async function getTagMatched(
   params?: TagMatchedBuildsParams
 ): Promise<Build[]> {
   try {
-    const response = await fetch("Builds/GetTagMatched", {
+    const response = await fetch("api/builds/getTagMatched", {
       method: "POST",
       headers: {
-        Accept: "application/json",
+        "Accept": "application/json",
         "Content-Type": "application/json",
       },
       body: params ? JSON.stringify(params) : undefined,
