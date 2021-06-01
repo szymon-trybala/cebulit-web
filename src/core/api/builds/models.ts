@@ -4,7 +4,11 @@ interface Product {
   price: number;
 }
 
-type MotherboardFormFactor = "ATX" | "microATX" | "miniITX";
+export enum MotherboardFormFactor {
+  "ATX",
+  "microATX",
+  "miniITX",
+}
 
 export interface Case extends Product {
   formFactor: MotherboardFormFactor;
@@ -39,9 +43,15 @@ export interface Processor extends Product {
   socket: string;
 }
 
-type StorageType = "HDD" | "SSD";
+export enum StorageType {
+  "HDD",
+  "SSD",
+}
 
-type StorageInterface = "SATA" | "NVME";
+export enum StorageInterface {
+  "SATA",
+  "NVME",
+}
 
 export interface Storage extends Product {
   capacity: number;

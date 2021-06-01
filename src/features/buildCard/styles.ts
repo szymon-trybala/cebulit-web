@@ -5,11 +5,17 @@ export const CarouselCard = styled(Card)`
   border-radius: 15px;
   min-height: 450px;
   max-height: 650px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 0 10px 0 10px;
+  cursor: pointer;
+  :hover {
+    border: 3px dotted #ac3b61;
+    background-image: -webkit-linear-gradient(45deg, #edc7b7, #ac3b61);
+    background: #fff;
+  }
 `;
 
 export const BuildCardImage = styled(Image)`
+  padding: 10px;
   max-height: 275px;
 `;
 

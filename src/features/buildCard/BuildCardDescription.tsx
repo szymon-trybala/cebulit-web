@@ -1,4 +1,4 @@
-import { Button, Col, Space } from "antd";
+import { Col, Space } from "antd";
 import React from "react";
 import { Build } from "../../core/api/builds/models";
 import {
@@ -6,7 +6,6 @@ import {
   CarouselCardDescItem,
   CarouselCardPrice,
 } from "./styles";
-import { ShoppingOutlined } from "@ant-design/icons";
 
 interface BuildCardDescriptionProps {
   build: Build;
@@ -37,12 +36,6 @@ const BuildCardDescription: React.FC<BuildCardDescriptionProps> = ({
       <Col flex="auto">
         <Space align="end">
           <CarouselCardPrice>{build.price} zł</CarouselCardPrice>
-          <Button
-            type="dashed"
-            size="large"
-            shape="circle"
-            icon={<ShoppingOutlined />}
-          />
         </Space>
       </Col>
     </CarouselCardDescContainer>
