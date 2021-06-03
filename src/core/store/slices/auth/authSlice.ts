@@ -1,12 +1,12 @@
-import { Auth } from "./types";
+import { AuthSlice } from "./types";
 import jwtDecode from "jwt-decode";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const emptyAuthObject: Auth = {
+const emptyAuthObject: AuthSlice = {
   user: undefined,
 };
 
-function getInitialAuthStateFromLocalStorate(): Auth {
+function getInitialAuthStateFromLocalStorate(): AuthSlice {
   try {
     const token = localStorage.getItem("token");
     if (!token) return emptyAuthObject;
@@ -30,7 +30,7 @@ const authSlice = createSlice({
   name: "auth",
   initialState: getInitialAuthStateFromLocalStorate(),
   reducers: {
-    setUser(state, action: PayloadAction<Auth>) {
+    setUser(state, action: PayloadAction<AuthSlice>) {
       return action.payload;
     },
     clearUser(state, action: PayloadAction<void>) {

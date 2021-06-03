@@ -1,5 +1,5 @@
 import { User } from "../../../api/auth/models";
 
-export interface Auth {
+export interface AuthSlice {
   user?: User;
 }

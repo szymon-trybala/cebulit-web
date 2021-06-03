@@ -38,7 +38,7 @@ const Login: React.FC = () => {
         );
         localStorage.setItem("token", user.token);
         alert.success(`Zalogowano się. Witaj, ${user.login}`);
-        history.push(routes.home);
+        history.push(routes.list);
       })
       .catch((err) => {
         alert.error(`${err}`);

@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { Layout } from "antd";
 
+export const SiteLayout = styled(Layout)`
+  min-height: 100vh;
+`;
+
 export const SiteLogo = styled.div`
   float: left;
   margin-top: 16px;

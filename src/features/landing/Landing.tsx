@@ -1,8 +1,8 @@
 import { Carousel, Col, Row } from "antd";
 import useBreakpoint from "antd/lib/grid/hooks/useBreakpoint";
-import Link from "antd/lib/typography/Link";
 import { Breakpoint } from "antd/lib/_util/responsiveObserve";
 import React, { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import FetchingErrorFeedback from "../../common/feedbacks/FetchingErrorFeedback";
 import NoMatchingBuildsFeedback from "../../common/feedbacks/NoMatchingBuildsFeedback";
 import PresentationLayout from "../../common/layouts/presentationLayout/PresentationLayout";
@@ -12,6 +12,7 @@ import Title from "../../common/text/Title";
 import { buildsService } from "../../core/api/builds/buildsService";
 import { Build } from "../../core/api/builds/models";
 import { Tag } from "../../core/api/tags/models";
+import { routes } from "../../router/routes";
 import BuildCard from "../buildCard/BuildCard";
 import TagCloud from "../tagCloud/TagCloud";
 
@@ -60,7 +61,7 @@ const Landing: React.FC = () => {
       {error ? (
         <FetchingErrorFeedback
           feedback={
-            <Link style={{ textAlign: "center" }}>
+            <Link to={routes.list} style={{ textAlign: "center" }}>
               Przejdź do listy wszystkich zestawów
             </Link>
           }
@@ -102,7 +103,10 @@ const Landing: React.FC = () => {
             <Col span={offset} />
           </Row>
           <PresentationFooter>
-            <Link style={{ textAlign: "center" }}>
+            <Link
+              to={routes.list}
+              style={{ textAlign: "center", cursor: "pointer" }}
+            >
               ... lub przejdź do listy wszystkich zestawów
             </Link>
           </PresentationFooter>

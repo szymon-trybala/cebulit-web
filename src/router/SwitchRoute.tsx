@@ -5,6 +5,7 @@ import Landing from "../features/landing/Landing";
 import Login from "../features/auth/Login";
 import Register from "../features/auth/Register";
 import Restrict from "../common/security/Restrict";
+import BuildsList from "../features/buildsList/BuildsList";
 
 const SwitchRoute: React.FC = () => {
   return (
@@ -16,7 +17,7 @@ const SwitchRoute: React.FC = () => {
         <Register />
       </Route>
       <Route path={routes.list}>
-        <div>LIST</div>
+        <BuildsList />
       </Route>
       <Route path={routes.home}>
         <Restrict>

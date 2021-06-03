@@ -75,3 +75,13 @@ export interface Build extends ProductSet {
   powerSupply: PowerSupply;
   case: Case;
 }
+
+export interface BuildsFiltersParams {
+  minPrice?: number;
+  maxPrice?: number;
+  processors?: string[];
+  ramCapacities?: number[];
+  graphicsCards?: string[];
+  storageCapacities?: number[];
+  cases?: string[];
+}
