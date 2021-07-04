@@ -2,18 +2,20 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AvailableFilters } from "../../../api/pcParts/models";
 import { FiltersState } from "./types";
 import { pcPartsService } from "../../../api/pcParts/pcPartsService";
+import { initialFetchedDataState } from "../../types";
+import { BuildsFiltersParams } from "../../../api/builds/models";
 
-const initialState: FiltersState = {
-  error: undefined,
-  promise: "initial",
-};
+const initialState: FiltersState = initialFetchedDataState;
 
 const filtersSlice = createSlice({
   name: "filters",
   initialState,
   reducers: {
-    setFilters(state, action: PayloadAction<AvailableFilters>) {
+    setAvailableFilters(state, action: PayloadAction<AvailableFilters>) {
       state.availableFilters = action.payload;
+    },
+    setSelectedFilters(state, action: PayloadAction<BuildsFiltersParams>) {
+      state.selectedFilters = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -41,5 +43,5 @@ const filtersSlice = createSlice({
   },
 });
 
-export const { setFilters } = filtersSlice.actions;
+export const { setAvailableFilters, setSelectedFilters } = filtersSlice.actions;
 export default filtersSlice.reducer;

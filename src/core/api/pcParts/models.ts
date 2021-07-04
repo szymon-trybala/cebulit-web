@@ -3,12 +3,17 @@ export interface BrandGroup<T> {
   products: T[];
 }
 
+export interface NamedProduct {
+  id: number;
+  name: string;
+}
+
 export interface AvailableFilters {
   minPrice: number;
   maxPrice: number;
-  processors: BrandGroup<string>[];
+  processors: BrandGroup<NamedProduct>[];
   ramCapacities: number[];
-  graphicsCards: BrandGroup<string>[];
+  graphicsCards: BrandGroup<NamedProduct>[];
   storageCapacities: number[];
-  cases: BrandGroup<string>[];
+  cases: BrandGroup<NamedProduct>[];
 }

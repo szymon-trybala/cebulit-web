@@ -79,9 +79,9 @@ export interface Build extends ProductSet {
 export interface BuildsFiltersParams {
   minPrice?: number;
   maxPrice?: number;
-  processors?: string[];
+  processorIds?: number[];
   ramCapacities?: number[];
-  graphicsCards?: string[];
+  graphicsCardIds?: number[];
   storageCapacities?: number[];
-  cases?: string[];
+  caseIds?: number[];
 }

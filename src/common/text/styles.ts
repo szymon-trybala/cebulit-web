@@ -24,3 +24,17 @@ export const SubtitleGradient = styled(Text)`
   -webkit-text-fill-color: transparent;
   display: inline-block;
 `;
+
+export const NormalHeader = styled.div`
+  color: black;
+  font-size: larger;
+  font-weight: bolder;
+  vertical-align: text-bottom;
+`;
+
+export const LargerHeader = styled.div`
+  color: black;
+  font-size: 20px;
+  font-weight: bolder;
+  vertical-align: text-bottom;
+`;

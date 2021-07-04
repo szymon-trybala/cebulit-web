@@ -1,11 +1,8 @@
 import { Col, Space } from "antd";
 import React from "react";
+import Header from "../../common/text/Header";
 import { Build } from "../../core/api/builds/models";
-import {
-  CarouselCardDescContainer,
-  CarouselCardDescItem,
-  CarouselCardPrice,
-} from "./styles";
+import { CarouselCardDescContainer, CarouselCardDescItem } from "./styles";
 
 interface BuildCardDescriptionProps {
   build: Build;
@@ -35,7 +32,7 @@ const BuildCardDescription: React.FC<BuildCardDescriptionProps> = ({
 
       <Col flex="auto">
         <Space align="end">
-          <CarouselCardPrice>{build.price} zł</CarouselCardPrice>
+          <Header>{build.price} zł</Header>
         </Space>
       </Col>
     </CarouselCardDescContainer>

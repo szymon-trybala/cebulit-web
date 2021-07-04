@@ -4,7 +4,8 @@ import React, { useEffect, useMemo } from "react";
 import { BuildsFiltersParams } from "../../core/api/builds/models";
 import { pcPartsService } from "../../core/api/pcParts/pcPartsService";
 import { useAppDispatch, useAppSelector } from "../../core/store/hooks";
-import { FiltersTreeSelect } from "./styles";
+import { setSelectedFilters } from "../../core/store/slices/filters/filtersSlice";
+import { FiltersTreeSelect, InlineFormItem, InlineSeparator } from "./styles";
 
 const BuildsListFilters: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -39,7 +40,7 @@ const BuildsListFilters: React.FC = () => {
   const [form] = Form.useForm<BuildsFiltersParams>();
 
   const onSubmit = (data: BuildsFiltersParams) => {
-    console.log(data);
+    dispatch(setSelectedFilters(data));
   };
 
   if (!filters) return null;
@@ -52,33 +53,14 @@ const BuildsListFilters: React.FC = () => {
         </Button>
       </Form.Item>
       <div>Cena:</div>
-      <Form.Item
-        name="minPrice"
-        style={{
-          display: "inline-block",
-          width: "calc(50% - 12px)",
-          marginBottom: 0,
-        }}
-      >
+      <InlineFormItem name="minPrice">
         <InputNumber min={filters.minPrice} max={filters.maxPrice} />
-      </Form.Item>
-      <span
-        style={{
-          display: "inline-block",
-          width: "24px",
-          lineHeight: "32px",
-          textAlign: "center",
-        }}
-      >
-        -
-      </span>
-      <Form.Item
-        name="maxPrice"
-        style={{ display: "inline-block", width: "calc(50% - 12px)" }}
-      >
+      </InlineFormItem>
+      <InlineSeparator>-</InlineSeparator>
+      <InlineFormItem name="maxPrice">
         <InputNumber min={filters.minPrice} max={filters.maxPrice} />
-      </Form.Item>
-      <Form.Item name="processors">
+      </InlineFormItem>
+      <Form.Item name="processorIds">
         <FiltersTreeSelect placeholder="Procesory" allowClear multiple>
           {filters.processors.map((g) => (
             <TreeNode
@@ -88,7 +70,7 @@ const BuildsListFilters: React.FC = () => {
               selectable={false}
             >
               {g.products.map((p) => (
-                <TreeNode key={p} value={p} title={p} isLeaf />
+                <TreeNode key={p.id} value={p.id} title={p.name} isLeaf />
               ))}
             </TreeNode>
           ))}
@@ -98,7 +80,7 @@ const BuildsListFilters: React.FC = () => {
       <Form.Item name="ramCapacities">
         <Checkbox.Group options={ramOptions} />
       </Form.Item>
-      <Form.Item name="graphicsCards">
+      <Form.Item name="graphicsCardIds">
         <FiltersTreeSelect placeholder="Karty graficzne" allowClear multiple>
           {filters.graphicsCards.map((g) => (
             <TreeNode
@@ -108,7 +90,7 @@ const BuildsListFilters: React.FC = () => {
               selectable={false}
             >
               {g.products.map((p) => (
-                <TreeNode key={p} value={p} title={p} isLeaf />
+                <TreeNode key={p.id} value={p.id} title={p.name} isLeaf />
               ))}
             </TreeNode>
           ))}
@@ -118,7 +100,7 @@ const BuildsListFilters: React.FC = () => {
       <Form.Item name="storageCapacities">
         <Checkbox.Group options={storageOptions} />
       </Form.Item>
-      <Form.Item name="cases">
+      <Form.Item name="caseIds">
         <FiltersTreeSelect placeholder="Obudowy" allowClear multiple>
           {filters.cases.map((g) => (
             <TreeNode
@@ -128,7 +110,7 @@ const BuildsListFilters: React.FC = () => {
               selectable={false}
             >
               {g.products.map((p) => (
-                <TreeNode key={p} value={p} title={p} isLeaf />
+                <TreeNode key={p.id} value={p.id} title={p.name} isLeaf />
               ))}
             </TreeNode>
           ))}

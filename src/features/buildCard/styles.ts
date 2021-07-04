@@ -26,10 +26,3 @@ export const CarouselCardDescContainer = styled(Row)`
 export const CarouselCardDescItem = styled.div`
   line-height: 25px;
 `;
-
-export const CarouselCardPrice = styled.div`
-  color: black;
-  font-size: large;
-  font-weight: bolder;
-  vertical-align: text-bottom;
-`;

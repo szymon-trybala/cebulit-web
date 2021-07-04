@@ -1,11 +1,10 @@
+import { BuildsFiltersParams } from "../../../api/builds/models";
 import { AvailableFilters } from "../../../api/pcParts/models";
+import { FetchedDataState, FetchedDataError } from "../../types";
 
-export interface FiltersState {
+export interface FiltersState extends FetchedDataState {
   availableFilters?: AvailableFilters;
-  promise: "initial" | "pending" | "error" | "fulfilled";
-  error: string | undefined;
+  selectedFilters?: BuildsFiltersParams;
 }
 
-export interface FiltersFetchError {
-  errorMessage: string;
-}
+export interface FiltersFetchError extends FetchedDataError {}

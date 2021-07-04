@@ -64,8 +64,8 @@ const Login: React.FC = () => {
                   message: "Musisz uzupełnić to pole",
                 },
                 {
-                  min: 4,
-                  message: "Login musi mieć co najmniej 4 znaki",
+                  min: 6,
+                  message: "Login musi mieć co najmniej 6 znaków",
                 },
               ]}
             >
