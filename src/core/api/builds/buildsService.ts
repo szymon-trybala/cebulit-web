@@ -32,8 +32,9 @@ async function getTagMatched(
   }
 }
 
-const emptyFilters: BuildsFiltersParams = {
+const initialFilters: BuildsFiltersParams = {
   processorIds: [],
+  orderBy: "name",
 };
 
 const getFiltered = createAsyncThunk<
@@ -52,7 +53,7 @@ const getFiltered = createAsyncThunk<
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: filters ? JSON.stringify(filters) : JSON.stringify(emptyFilters),
+    body: filters ? JSON.stringify(filters) : JSON.stringify(initialFilters),
   });
   if (!response.ok)
     return thunkApi.rejectWithValue({ errorMessage: "Błąd serwera" });

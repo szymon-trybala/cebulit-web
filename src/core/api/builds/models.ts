@@ -84,4 +84,12 @@ export interface BuildsFiltersParams {
   graphicsCardIds?: number[];
   storageCapacities?: number[];
   caseIds?: number[];
+  orderBy?: "name" | "nameDescending" | "price" | "priceDescending";
 }
+
+export const buildsOrderByOptions = [
+  { label: "Nazwa: od A do Z", value: "name" },
+  { label: "Nazwa: od Z do A", value: "nameDescending" },
+  { label: "Cena: od najniższej", value: "price" },
+  { label: "Cena: od najwyższej", value: "priceDescending" },
+];

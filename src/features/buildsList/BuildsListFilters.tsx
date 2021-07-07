@@ -1,7 +1,10 @@
-import { Button, Checkbox, Form, InputNumber } from "antd";
+import { Button, Checkbox, Form, InputNumber, Select } from "antd";
 import { TreeNode } from "rc-tree-select";
 import React, { useEffect, useMemo } from "react";
-import { BuildsFiltersParams } from "../../core/api/builds/models";
+import {
+  BuildsFiltersParams,
+  buildsOrderByOptions,
+} from "../../core/api/builds/models";
 import { pcPartsService } from "../../core/api/pcParts/pcPartsService";
 import { useAppDispatch, useAppSelector } from "../../core/store/hooks";
 import { setSelectedFilters } from "../../core/store/slices/filters/filtersSlice";
@@ -40,7 +43,7 @@ const BuildsListFilters: React.FC = () => {
   const [form] = Form.useForm<BuildsFiltersParams>();
 
   const onSubmit = (data: BuildsFiltersParams) => {
-    dispatch(setSelectedFilters(data));
+    dispatch(setSelectedFilters({ ...data }));
   };
 
   if (!filters) return null;
@@ -54,12 +57,19 @@ const BuildsListFilters: React.FC = () => {
       </Form.Item>
       <div>Cena:</div>
       <InlineFormItem name="minPrice">
-        <InputNumber min={filters.minPrice} max={filters.maxPrice} />
+        <InputNumber min={filters.minPrice} />
       </InlineFormItem>
       <InlineSeparator>-</InlineSeparator>
       <InlineFormItem name="maxPrice">
-        <InputNumber min={filters.minPrice} max={filters.maxPrice} />
+        <InputNumber max={filters.maxPrice} />
       </InlineFormItem>
+      <Form.Item name="orderBy">
+        <Select
+          defaultValue={buildsOrderByOptions[0].value}
+          placeholder="Sortuj"
+          options={buildsOrderByOptions}
+        />
+      </Form.Item>
       <Form.Item name="processorIds">
         <FiltersTreeSelect placeholder="Procesory" allowClear multiple>
           {filters.processors.map((g) => (

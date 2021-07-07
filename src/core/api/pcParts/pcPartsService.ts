@@ -11,16 +11,11 @@ const getAvailableFilters = createAsyncThunk<
     rejectValue: FiltersFetchError;
   }
 >("api/pcParts/getAvailableFilters", async (_, thunkApi) => {
-  const token = localStorage.getItem("token");
-  if (!token || token === null || token.length < 1)
-    return thunkApi.rejectWithValue({ errorMessage: "Brak tokenu" });
-
   const response = await fetch("api/pcParts/getAvailableFilters", {
     method: "GET",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
   });
   if (response.status === 401) {
