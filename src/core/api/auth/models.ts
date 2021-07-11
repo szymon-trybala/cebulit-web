@@ -13,3 +13,8 @@ export interface RegisterDto {
   login: string;
   password: string;
 }
+
+export interface PasswordChangeParams {
+  currentPassword: string;
+  newPassword: string;
+}

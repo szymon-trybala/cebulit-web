@@ -6,17 +6,26 @@ import {
   SiteFooter,
   SiteLogo,
   SiteLayout,
+  MainLayoutPulledRightMenuItem,
 } from "./styles";
 import { Menu } from "antd";
+import { useHistory } from "react-router-dom";
+import { routes } from "../../../router/routes";
+import UserActions from "../../userActions/UserActions";
 
 const MainLayout: React.FC = ({ children }) => {
+  const history = useHistory();
+
   return (
     <SiteLayout>
       <SiteHeader>
         <SiteLogo />
-        <Menu theme="light" mode="horizontal" defaultSelectedKeys={["1"]}>
-          <Menu.Item key="1">Lista</Menu.Item>
-          <Menu.Item key="2">Stwórz zestaw</Menu.Item>
+        <Menu theme="light" mode="horizontal">
+          <Menu.Item onClick={() => history.push(routes.list)}>Lista</Menu.Item>
+          <Menu.Item>Stwórz zestaw</Menu.Item>
+          <MainLayoutPulledRightMenuItem>
+            <UserActions />
+          </MainLayoutPulledRightMenuItem>
         </Menu>
       </SiteHeader>
       <SiteContentContainer>

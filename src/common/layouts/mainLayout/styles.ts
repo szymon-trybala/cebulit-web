@@ -37,3 +37,7 @@ export const SiteFooter = styled(Layout.Footer)`
   text-align: center;
   margin: 0;
 `;
+
+export const MainLayoutPulledRightMenuItem = styled.span`
+  float: right;
+`;

@@ -1,8 +1,5 @@
-import { UserOutlined } from "@ant-design/icons";
-import { Button } from "antd";
 import React from "react";
-import { Link } from "react-router-dom";
-import { routes } from "../../../router/routes";
+import UserActions from "../../userActions/UserActions";
 import {
   PresentationContent,
   PresentationContentContainer,
@@ -14,14 +11,7 @@ const PresentationLayout: React.FC = ({ children }) => {
   return (
     <StaticLayout>
       <PresentationHeader>
-        <Link to={routes.login}>
-          <Button
-            type="ghost"
-            size="large"
-            shape="circle"
-            icon={<UserOutlined />}
-          ></Button>
-        </Link>
+        <UserActions />
       </PresentationHeader>
       <PresentationContentContainer>
         <PresentationContent>{children}</PresentationContent>

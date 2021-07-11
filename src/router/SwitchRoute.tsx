@@ -6,6 +6,7 @@ import Login from "../features/auth/Login";
 import Register from "../features/auth/Register";
 import Restrict from "../common/security/Restrict";
 import BuildsList from "../features/buildsList/BuildsList";
+import UserSettings from "../features/userSettings/UserSettings";
 
 const SwitchRoute: React.FC = () => {
   return (
@@ -23,6 +24,9 @@ const SwitchRoute: React.FC = () => {
         <Restrict>
           <div>HOME</div>
         </Restrict>
+      </Route>
+      <Route path={routes.userSettings}>
+        <UserSettings />
       </Route>
       <Route path={routes.landing}>
         <Landing />
