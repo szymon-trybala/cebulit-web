@@ -87,7 +87,11 @@ export interface BuildsFiltersParams {
   orderBy?: "name" | "nameDescending" | "price" | "priceDescending";
 }
 
-export const buildsOrderByOptions = [
+export const loggedInOrderByOptions = [
+  {label: "Dopasowanie do użytkownika", value: "tagMatch"}
+];
+
+export const basicBuildsOrderByOptions = [
   { label: "Nazwa: od A do Z", value: "name" },
   { label: "Nazwa: od Z do A", value: "nameDescending" },
   { label: "Cena: od najniższej", value: "price" },

@@ -3,7 +3,8 @@ import { TreeNode } from "rc-tree-select";
 import React, { useEffect, useMemo } from "react";
 import {
   BuildsFiltersParams,
-  buildsOrderByOptions,
+  basicBuildsOrderByOptions,
+  loggedInOrderByOptions,
 } from "../../core/api/builds/models";
 import { pcPartsService } from "../../core/api/pcParts/pcPartsService";
 import { useAppDispatch, useAppSelector } from "../../core/store/hooks";
@@ -13,6 +14,7 @@ import { FiltersTreeSelect, InlineFormItem, InlineSeparator } from "./styles";
 const BuildsListFilters: React.FC = () => {
   const dispatch = useAppDispatch();
   const filters = useAppSelector((x) => x.filtersSlice.availableFilters);
+  const user = useAppSelector((x) => x.authSlice.user);
 
   const ramOptions = useMemo(() => {
     if (!filters) return undefined;
@@ -35,6 +37,11 @@ const BuildsListFilters: React.FC = () => {
       return option;
     });
   }, [filters]);
+
+  const orderBySettings = useMemo(() => {
+    if (!user) return basicBuildsOrderByOptions;
+    else return loggedInOrderByOptions.concat(basicBuildsOrderByOptions);
+  }, [user]);
 
   useEffect(() => {
     dispatch(pcPartsService.getAvailableFilters());
@@ -65,9 +72,9 @@ const BuildsListFilters: React.FC = () => {
       </InlineFormItem>
       <Form.Item name="orderBy">
         <Select
-          defaultValue={buildsOrderByOptions[0].value}
+          defaultValue={orderBySettings[0].value}
           placeholder="Sortuj"
-          options={buildsOrderByOptions}
+          options={orderBySettings}
         />
       </Form.Item>
       <Form.Item name="processorIds">

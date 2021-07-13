@@ -60,7 +60,7 @@ const Register: React.FC = () => {
                   message: "Musisz uzupełnić to pole",
                 },
                 {
-                  min: 6,
+                  min: 4,
                   message: "Login musi mieć co najmniej 4 znaki",
                 },
               ]}

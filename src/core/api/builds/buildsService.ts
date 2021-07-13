@@ -41,20 +41,26 @@ const getFiltered = createAsyncThunk<
   Build[],
   {
     filters?: BuildsFiltersParams;
+    userSpecific?: boolean;
   },
   {
     dispatch: AppDispatch;
     rejectValue: BuildsFetchError;
   }
->("api/builds/getFiltered", async ({ filters }, thunkApi) => {
-  const response = await fetch("api/builds/getFiltered", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: filters ? JSON.stringify(filters) : JSON.stringify(initialFilters),
-  });
+>("api/builds/getFiltered", async ({ filters, userSpecific }, thunkApi) => {
+  const token = localStorage.getItem("token");
+  const response = await fetch(
+    userSpecific ? "api/builds/getFilteredForUser" : "api/builds/getFiltered",
+    {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: filters ? JSON.stringify(filters) : JSON.stringify(initialFilters),
+    }
+  );
   if (!response.ok)
     return thunkApi.rejectWithValue({ errorMessage: "Błąd serwera" });
 

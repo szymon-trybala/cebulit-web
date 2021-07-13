@@ -9,7 +9,7 @@ import {
   MainLayoutPulledRightMenuItem,
 } from "./styles";
 import { Menu } from "antd";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { routes } from "../../../router/routes";
 import UserActions from "../../userActions/UserActions";
 
@@ -19,7 +19,9 @@ const MainLayout: React.FC = ({ children }) => {
   return (
     <SiteLayout>
       <SiteHeader>
-        <SiteLogo />
+        <Link to={routes.landing}>
+          <SiteLogo />
+        </Link>
         <Menu theme="light" mode="horizontal">
           <Menu.Item onClick={() => history.push(routes.list)}>Lista</Menu.Item>
           <Menu.Item>Stwórz zestaw</Menu.Item>
