@@ -1,9 +1,15 @@
-import { LoginOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons";
-import { Button } from "antd";
-import React from "react";
+import {
+  LoginOutlined,
+  LogoutOutlined,
+  ShoppingCartOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { Badge, Button } from "antd";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../core/store/hooks";
 import { clearUser } from "../../core/store/slices/auth/authSlice";
+import Cart from "../../features/cart/Cart";
 import { routes } from "../../router/routes";
 
 const UserActions: React.FC = () => {
@@ -11,6 +17,9 @@ const UserActions: React.FC = () => {
   const history = useHistory();
 
   const user = useAppSelector((x) => x.authSlice.user);
+  const cartBuild = useAppSelector((x) => x.cartSlice.build);
+
+  const [cartModalVisible, setCartModalVisible] = useState(false);
 
   const handleLogout = () => {
     dispatch(clearUser());
@@ -22,10 +31,20 @@ const UserActions: React.FC = () => {
     history.push(routes.userSettings);
   };
 
+  const handleCartVisibilityChange = () => {
+    setCartModalVisible(!cartModalVisible);
+  };
+
   return (
     <>
       {user ? (
         <>
+          <Button
+            onClick={handleLogout}
+            type="ghost"
+            size="large"
+            icon={<LogoutOutlined />}
+          />
           <Button
             onClick={handleUserIconClick}
             type="ghost"
@@ -34,11 +53,27 @@ const UserActions: React.FC = () => {
           >
             {user.login}
           </Button>
-          <Button
-            onClick={handleLogout}
-            type="ghost"
-            size="large"
-            icon={<LogoutOutlined />}
+          {cartBuild ? (
+            <Badge count={1}>
+              <Button
+                onClick={handleCartVisibilityChange}
+                type="ghost"
+                size="large"
+                icon={<ShoppingCartOutlined />}
+              />
+            </Badge>
+          ) : (
+            <Button
+              onClick={handleCartVisibilityChange}
+              type="ghost"
+              size="large"
+              icon={<ShoppingCartOutlined />}
+            />
+          )}
+
+          <Cart
+            isModalVisible={cartModalVisible}
+            onClose={handleCartVisibilityChange}
           />
         </>
       ) : (

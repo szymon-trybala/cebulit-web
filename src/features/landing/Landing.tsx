@@ -3,8 +3,8 @@ import useBreakpoint from "antd/lib/grid/hooks/useBreakpoint";
 import { Breakpoint } from "antd/lib/_util/responsiveObserve";
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import EmptyFeedback from "../../common/feedbacks/EmptyFeedback";
 import FetchingErrorFeedback from "../../common/feedbacks/FetchingErrorFeedback";
-import NoMatchingBuildsFeedback from "../../common/feedbacks/NoMatchingBuildsFeedback";
 import PresentationLayout from "../../common/layouts/presentationLayout/PresentationLayout";
 import { PresentationFooter } from "../../common/layouts/presentationLayout/styles";
 import LoadingCardsCarouselSkeleton from "../../common/skeletons/LoadingCardsCarouselSkeleton";
@@ -82,7 +82,7 @@ const Landing: React.FC = () => {
                 <>
                   {builds &&
                     (builds.length === 0 ? (
-                      <NoMatchingBuildsFeedback feedback="Spróbuj odznaczyć część filtrów" />
+                      <EmptyFeedback feedback="Spróbuj odznaczyć część filtrów" />
                     ) : (
                       <Carousel
                         autoplay

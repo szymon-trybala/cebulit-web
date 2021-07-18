@@ -1,7 +1,7 @@
 import { Col, List, Row } from "antd";
 import React, { useEffect } from "react";
+import EmptyFeedback from "../../common/feedbacks/EmptyFeedback";
 import FetchingErrorFeedback from "../../common/feedbacks/FetchingErrorFeedback";
-import NoMatchingBuildsFeedback from "../../common/feedbacks/NoMatchingBuildsFeedback";
 import MainLayout from "../../common/layouts/mainLayout/MainLayout";
 import LoadingListSkeleton from "../../common/skeletons/LoadingListSkeleton";
 import { buildsService } from "../../core/api/builds/buildsService";
@@ -39,7 +39,7 @@ const BuildsList: React.FC = () => {
             )}
             {buildsState.promise === "fulfilled" &&
               buildsState.builds?.length === 0 && (
-                <NoMatchingBuildsFeedback feedback="Spróbuj zmienić filtry" />
+                <EmptyFeedback feedback="Spróbuj zmienić filtry" />
               )}
             {buildsState.promise === "fulfilled" &&
               buildsState.builds &&
