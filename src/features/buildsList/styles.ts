@@ -1,4 +1,4 @@
-import { Form, TreeSelect, List } from "antd";
+import { Form, TreeSelect, List, Image } from "antd";
 import styled from "styled-components";
 
 export const FiltersTreeSelect = styled(TreeSelect)`
@@ -23,5 +23,12 @@ export const BuildsListContainer = styled.div`
 
 export const BuildsHorizontalListItem = styled(List.Item)`
   height: 175px;
+`;
+
+export const BuildListItemTitleContainer = styled.div`
+  cursor: pointer;
+`;
+
+export const BuildListItemImage = styled(Image)`
   cursor: pointer;
 `;

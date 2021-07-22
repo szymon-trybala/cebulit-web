@@ -43,6 +43,7 @@ const BuildPreview: React.FC<BuildPreviewProps> = ({
       onOk={onOk}
       footer={null}
       width="800px"
+      centered
     >
       <>
         <Row gutter={[16, 0]}>

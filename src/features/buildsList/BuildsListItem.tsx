@@ -1,50 +1,64 @@
-import { List, Image } from "antd";
+import { ShoppingCartOutlined } from "@ant-design/icons";
+import { List, Button } from "antd";
 import React, { useState } from "react";
+import BuildDetails from "../../common/build/BuildDetails";
 import Header from "../../common/text/Header";
-import { Build, StorageInterface } from "../../core/api/builds/models";
+import { Build } from "../../core/api/builds/models";
+import { useAppDispatch } from "../../core/store/hooks";
+import { setCartBuild } from "../../core/store/slices/cart/cartSlice";
 import BuildPreview from "../buildPreview/BuildPreview";
-import { BuildsHorizontalListItem } from "./styles";
+import {
+  BuildsHorizontalListItem,
+  BuildListItemTitleContainer,
+  BuildListItemImage,
+} from "./styles";
 
 interface BuildsListItemProps {
   build: Build;
 }
 
 const BuildsListItem: React.FC<BuildsListItemProps> = ({ build }) => {
+  const dispatch = useAppDispatch();
   const [modalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
     setModalVisible(!modalVisible);
   };
 
+  const handleAddToCartButtonClick = () => {
+    dispatch(setCartBuild(build));
+  };
+
   return (
     <>
-      <BuildsHorizontalListItem onClick={toggleModal}>
+      <BuildsHorizontalListItem>
         <List.Item.Meta
           avatar={
-            <Image
+            <BuildListItemImage
+              onClick={toggleModal}
               width={140}
               preview={false}
               src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
             />
           }
-          title={<Header>{build.name}</Header>}
-          description={
-            <>
-              <div>Procesor: {build.processor.name}</div>
-              <div>Płya główna: {build.motherboard.name}</div>
-              <div>RAM: {build.memory.capacity} GB</div>
-              {build.storage.map((x) => (
-                <div>
-                  {x.capacity} GB {StorageInterface[x.interface]}
-                </div>
-              ))}
-              {build.graphicsCard && (
-                <div>Karta graficzna: {build.graphicsCard.name}</div>
-              )}
-            </>
+          title={
+            <BuildListItemTitleContainer onClick={toggleModal}>
+              <Header>{build.name}</Header>
+            </BuildListItemTitleContainer>
           }
+          description={<BuildDetails build={build} />}
         />
-        <Header size="larger">{build.price} zł</Header>
+
+        <Header size="larger">
+          {build.price} zł{" "}
+          <Button
+            onClick={handleAddToCartButtonClick}
+            type="dashed"
+            shape="circle"
+            size="large"
+            icon={<ShoppingCartOutlined />}
+          />
+        </Header>
       </BuildsHorizontalListItem>
       <BuildPreview
         build={build}
