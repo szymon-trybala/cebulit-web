@@ -7,7 +7,7 @@ interface TagTitleProps {
 }
 
 export const MatchedTagTitle = styled.span<TagTitleProps>`
-  color: ${(props) => "black"};
+  color: ${(props) => `black`};
   font-size: 22px;
 `;
 

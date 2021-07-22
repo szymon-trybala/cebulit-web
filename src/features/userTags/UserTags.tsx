@@ -89,7 +89,7 @@ const UserTags: React.FC = () => {
                   userTagMatches.map((x) => (
                     <CloudMatchedTag
                       key={x.tag.id}
-                      color={`rgba(255,255,0,${x.matchLevel})`}
+                      color={`rgba(172,59,97,${x.matchLevel})`}
                     >
                       <MatchedTagTitle
                         onClick={() => handleTagMatchIncrease(x)}

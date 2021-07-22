@@ -2,14 +2,16 @@ import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Descriptions, Modal, Image, Row, Col } from "antd";
 import Paragraph from "antd/lib/typography/Paragraph";
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { alert } from "../../common/alerts/alerts";
 import {
   Build,
   MotherboardFormFactor,
   StorageInterface,
 } from "../../core/api/builds/models";
-import { useAppDispatch } from "../../core/store/hooks";
+import { useAppDispatch, useAppSelector } from "../../core/store/hooks";
 import { setCartBuild } from "../../core/store/slices/cart/cartSlice";
+import { routes } from "../../router/routes";
 import {
   BuildPreviewAlignedBottomButton,
   BuildPreviewDescriptionContainer,
@@ -28,11 +30,17 @@ const BuildPreview: React.FC<BuildPreviewProps> = ({
   onCancel,
   onOk,
 }) => {
+  const history = useHistory();
   const dispatch = useAppDispatch();
+  const loggedIn = useAppSelector((x) => x.authSlice.user !== undefined);
 
   const onAddToCartButtonClick = () => {
     dispatch(setCartBuild(build));
     alert.success("Dodano do koszyka");
+  };
+
+  const onLoginButtonClick = () => {
+    history.push(routes.login);
   };
 
   return (
@@ -59,15 +67,25 @@ const BuildPreview: React.FC<BuildPreviewProps> = ({
                 </Paragraph>
               </BuildPreviewDescriptionContainer>
 
-              <BuildPreviewAlignedBottomButton
-                size="large"
-                onClick={onAddToCartButtonClick}
-                type="primary"
-                icon={<ShoppingCartOutlined />}
-                block
-              >
-                {build.price} zł
-              </BuildPreviewAlignedBottomButton>
+              {loggedIn ? (
+                <BuildPreviewAlignedBottomButton
+                  size="large"
+                  onClick={onAddToCartButtonClick}
+                  type="primary"
+                  icon={<ShoppingCartOutlined />}
+                  block
+                >
+                  {build.price} zł
+                </BuildPreviewAlignedBottomButton>
+              ) : (
+                <BuildPreviewAlignedBottomButton
+                  onClick={onLoginButtonClick}
+                  size="large"
+                  block
+                >
+                  Zaloguj się aby dodać do koszyka
+                </BuildPreviewAlignedBottomButton>
+              )}
             </BuildPreviewHorizontalRow>
           </Col>
           <Col md={14}>

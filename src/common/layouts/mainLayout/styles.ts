@@ -10,7 +10,7 @@ export const SiteLogo = styled.div`
   margin-top: 16px;
   height: 32px;
   width: 96px;
-  background: rgba(255, 214, 99, 0.6);
+  background: rgba(172, 59, 100, 0.9);
 `;
 
 export const SiteHeader = styled(Layout.Header)`

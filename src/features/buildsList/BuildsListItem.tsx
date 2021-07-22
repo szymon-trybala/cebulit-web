@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import BuildDetails from "../../common/build/BuildDetails";
 import Header from "../../common/text/Header";
 import { Build } from "../../core/api/builds/models";
-import { useAppDispatch } from "../../core/store/hooks";
+import { useAppDispatch, useAppSelector } from "../../core/store/hooks";
 import { setCartBuild } from "../../core/store/slices/cart/cartSlice";
 import BuildPreview from "../buildPreview/BuildPreview";
 import {
@@ -19,6 +19,7 @@ interface BuildsListItemProps {
 
 const BuildsListItem: React.FC<BuildsListItemProps> = ({ build }) => {
   const dispatch = useAppDispatch();
+  const loggedIn = useAppSelector((x) => x.authSlice.user !== undefined);
   const [modalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
@@ -51,13 +52,15 @@ const BuildsListItem: React.FC<BuildsListItemProps> = ({ build }) => {
 
         <Header size="larger">
           {build.price} zł{" "}
-          <Button
-            onClick={handleAddToCartButtonClick}
-            type="dashed"
-            shape="circle"
-            size="large"
-            icon={<ShoppingCartOutlined />}
-          />
+          {loggedIn && (
+            <Button
+              onClick={handleAddToCartButtonClick}
+              type="dashed"
+              shape="circle"
+              size="large"
+              icon={<ShoppingCartOutlined />}
+            />
+          )}
         </Header>
       </BuildsHorizontalListItem>
       <BuildPreview
