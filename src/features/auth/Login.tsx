@@ -13,7 +13,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { alert } from "../../common/alerts/alerts";
 import { LoginDto } from "../../core/api/auth/models";
-import { authService } from "../../core/api/auth/authService";
+import { userService } from "../../core/api/auth/userService";
 import { routes } from "../../router/routes";
 
 const Login: React.FC = () => {
@@ -28,7 +28,7 @@ const Login: React.FC = () => {
   };
 
   const onSubmit = (data: LoginDto) => {
-    authService
+    userService
       .login(data)
       .then((user) => {
         dispatch(

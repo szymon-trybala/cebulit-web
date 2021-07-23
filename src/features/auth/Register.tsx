@@ -13,7 +13,7 @@ import { alert } from "../../common/alerts/alerts";
 import { useDispatch } from "react-redux";
 import { clearUser } from "../../core/store/slices/auth/authSlice";
 import { RegisterDto } from "../../core/api/auth/models";
-import { authService } from "../../core/api/auth/authService";
+import { userService } from "../../core/api/auth/userService";
 import { routes } from "../../router/routes";
 import { Link } from "react-router-dom";
 
@@ -29,7 +29,7 @@ const Register: React.FC = () => {
   };
 
   const onSubmit = (data: RegisterDto) => {
-    authService
+    userService
       .register(data)
       .then((user) => {
         dispatch(clearUser());

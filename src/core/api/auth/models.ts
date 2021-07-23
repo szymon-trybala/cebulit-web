@@ -1,3 +1,5 @@
+import { Build } from "../builds/models";
+
 export interface User {
   id: number;
   login: string;
@@ -17,4 +19,14 @@ export interface RegisterDto {
 export interface PasswordChangeParams {
   currentPassword: string;
   newPassword: string;
+}
+
+export interface BuildOrderParams {
+  buildId: number;
+}
+
+export interface BuildOrder {
+  id: number;
+  price: number;
+  build: Build;
 }

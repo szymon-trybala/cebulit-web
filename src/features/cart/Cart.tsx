@@ -5,9 +5,11 @@ import BuildDetails from "../../common/build/BuildDetails";
 import EmptyFeedback from "../../common/feedbacks/EmptyFeedback";
 import Restrict from "../../common/security/Restrict";
 import Header from "../../common/text/Header";
+import { userService } from "../../core/api/auth/userService";
 import { useAppDispatch, useAppSelector } from "../../core/store/hooks";
 import { removeCartBuild } from "../../core/store/slices/cart/cartSlice";
 import { CartImage, CartPriceContainer } from "./styles";
+import { alert } from "../../common/alerts/alerts";
 
 interface CartProps {
   isModalVisible: boolean;
@@ -20,6 +22,17 @@ const Cart: React.FC<CartProps> = ({ isModalVisible, onClose }) => {
 
   const handleClearCart = () => {
     dispatch(removeCartBuild());
+  };
+
+  const handleBuyNow = async () => {
+    if (!cartBuild) return;
+    try {
+      await userService.orderBuild({ buildId: cartBuild.id });
+      dispatch(removeCartBuild());
+      alert.success(`Zamówiono zestaw`); // TODO - widok potwierdzenia zakupu
+    } catch (error) {
+      alert.error(`${error}`);
+    }
   };
 
   return (
@@ -42,7 +55,12 @@ const Cart: React.FC<CartProps> = ({ isModalVisible, onClose }) => {
                 />
               }
               actions={[
-                <Button icon={<CheckOutlined />} type="primary" size="large">
+                <Button
+                  onClick={handleBuyNow}
+                  icon={<CheckOutlined />}
+                  type="primary"
+                  size="large"
+                >
                   Kup teraz
                 </Button>,
                 <Button

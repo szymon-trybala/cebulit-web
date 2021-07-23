@@ -1,7 +1,7 @@
 import { Divider } from "antd";
 import styled from "styled-components";
 
-export const ChangePasswordContainer = styled.div`
+export const SettingsPartContainer = styled.div`
   margin: 8px;
   padding: 16px 256px 8px;
 `;

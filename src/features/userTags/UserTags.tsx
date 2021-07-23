@@ -10,7 +10,7 @@ import {
   MatchedTagTitle,
   TagCloudCloseOutlined,
 } from "./styles";
-import { authService } from "../../core/api/auth/authService";
+import { userService } from "../../core/api/auth/userService";
 
 const UserTags: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -68,7 +68,7 @@ const UserTags: React.FC = () => {
   const submit = async () => {
     if (!userTagMatches) return;
     try {
-      await authService.setTags(userTagMatches.filter((x) => x.matchLevel > 0));
+      await userService.setTags(userTagMatches.filter((x) => x.matchLevel > 0));
       alert.success("Zmieniono tagi użytkownika");
     } catch (error) {
       console.error(error);

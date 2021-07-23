@@ -1,6 +1,6 @@
 import { Button, Form, Input } from "antd";
 import React from "react";
-import { authService } from "../../core/api/auth/authService";
+import { userService } from "../../core/api/auth/userService";
 import { PasswordChangeParams } from "../../core/api/auth/models";
 import { alert } from "../../common/alerts/alerts";
 
@@ -15,7 +15,7 @@ const ChangePassword: React.FC = () => {
 
   const submit = async (data: PasswordChangeParams) => {
     try {
-      await authService.changePassword(data);
+      await userService.changePassword(data);
       alert.success(`Zmieniono hasło`);
     } catch (error) {
       alert.error(`${error}`);
