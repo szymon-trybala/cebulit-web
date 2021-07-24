@@ -10,6 +10,8 @@ import { useAppDispatch, useAppSelector } from "../../core/store/hooks";
 import { removeCartBuild } from "../../core/store/slices/cart/cartSlice";
 import { CartImage, CartPriceContainer } from "./styles";
 import { alert } from "../../common/alerts/alerts";
+import { useHistory } from "react-router-dom";
+import { routes } from "../../router/routes";
 
 interface CartProps {
   isModalVisible: boolean;
@@ -17,6 +19,7 @@ interface CartProps {
 }
 
 const Cart: React.FC<CartProps> = ({ isModalVisible, onClose }) => {
+  const history = useHistory();
   const dispatch = useAppDispatch();
   const cartBuild = useAppSelector((x) => x.cartSlice.build);
 
@@ -29,7 +32,8 @@ const Cart: React.FC<CartProps> = ({ isModalVisible, onClose }) => {
     try {
       await userService.orderBuild({ buildId: cartBuild.id });
       dispatch(removeCartBuild());
-      alert.success(`Zamówiono zestaw`); // TODO - widok potwierdzenia zakupu
+      alert.success(`Zamówiono zestaw`);
+      history.push(routes.orderComplete);
     } catch (error) {
       alert.error(`${error}`);
     }

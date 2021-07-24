@@ -33,7 +33,7 @@ const Register: React.FC = () => {
       .register(data)
       .then((user) => {
         dispatch(clearUser());
-        alert.success(`Zarejestrowano, teraz mozesz się zalogować`);
+        alert.success(`Zarejestrowano`);
         history.push(routes.login);
       })
       .catch((err) => {

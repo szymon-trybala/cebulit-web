@@ -12,7 +12,11 @@ import {
 } from "./styles";
 import { userService } from "../../core/api/auth/userService";
 
-const UserTags: React.FC = () => {
+interface UserTagsProps {
+  onTagsUpdate?: () => any;
+}
+
+const UserTags: React.FC<UserTagsProps> = ({ onTagsUpdate }) => {
   const [loading, setLoading] = useState(false);
   const [userTagMatches, setUserTagMatches] = useState<TagMatch[]>();
 
@@ -70,6 +74,7 @@ const UserTags: React.FC = () => {
     try {
       await userService.setTags(userTagMatches.filter((x) => x.matchLevel > 0));
       alert.success("Zmieniono tagi użytkownika");
+      onTagsUpdate && onTagsUpdate();
     } catch (error) {
       console.error(error);
       alert.error(`${error}`);
@@ -108,6 +113,7 @@ const UserTags: React.FC = () => {
           </MatchedTagCloudContainer>
         </Col>
       </Row>
+
       <Row align="middle" justify="center">
         <Typography.Text disabled>
           Im więcej razy zaznaczysz dany tag, tym bardziej będziemy brać go pod

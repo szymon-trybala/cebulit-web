@@ -15,6 +15,7 @@ import { alert } from "../../common/alerts/alerts";
 import { LoginDto } from "../../core/api/auth/models";
 import { userService } from "../../core/api/auth/userService";
 import { routes } from "../../router/routes";
+import { tagsService } from "../../core/api/tags/tagsService";
 
 const Login: React.FC = () => {
   const dispatch = useDispatch();
@@ -27,22 +28,27 @@ const Login: React.FC = () => {
     },
   };
 
-  const onSubmit = (data: LoginDto) => {
-    userService
-      .login(data)
-      .then((user) => {
-        dispatch(
-          setUser({
-            user: user,
-          })
-        );
-        localStorage.setItem("token", user.token);
-        alert.success(`Zalogowano się. Witaj, ${user.login}`);
-        history.push(routes.list);
-      })
-      .catch((err) => {
-        alert.error(`${err}`);
-      });
+  const onSubmit = async (data: LoginDto) => {
+    try {
+      const user = await userService.login(data);
+      dispatch(setUser({ user }));
+      localStorage.setItem("token", user.token);
+      alert.success(`Zalogowano się. Witaj, ${user.login}`);
+      const userTagsSet = await areUserTagsSet();
+      history.push(userTagsSet ? routes.list : routes.userTags);
+    } catch (err) {
+      alert.error(`${err}`);
+    }
+  };
+
+  const areUserTagsSet = async (): Promise<boolean> => {
+    try {
+      const userTags = await tagsService.getForUser();
+      return userTags && userTags.length > 0;
+    } catch (err) {
+      console.error(`Couldn't check if user tags are set: ${err}`);
+      return false;
+    }
   };
 
   return (

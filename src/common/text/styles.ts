@@ -25,6 +25,12 @@ export const SubtitleGradient = styled(Text)`
   display: inline-block;
 `;
 
+export const SubtitleWithoutGradient = styled(Text)`
+  line-height: 120%;
+  font-size: clamp(1rem, -0.875rem + 8.333vw, 1.5rem);
+  display: inline-block;
+`;
+
 export const NormalHeader = styled.div`
   color: black;
   font-size: larger;

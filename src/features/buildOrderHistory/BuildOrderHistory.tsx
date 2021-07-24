@@ -41,7 +41,7 @@ const BuildOrderHistory: React.FC = () => {
         <>
           {orderedBuilds &&
             (orderedBuilds.length === 0 ? (
-              <EmptyFeedback feedback="Zamów coś" />
+              <EmptyFeedback feedback="Spróbuj coś zamówić" />
             ) : (
               <List
                 dataSource={orderedBuilds}

@@ -5,4 +5,6 @@ export const routes = {
   register: "/register",
   list: "/list",
   userSettings: "/userSettings",
+  userTags: "/userTags",
+  orderComplete: "/orderComplete",
 };
