@@ -1,21 +1,18 @@
-import { Card, Carousel, Skeleton } from "antd";
+import { Carousel } from "antd";
 import React from "react";
-import { CarouselCard } from "../../features/buildCard/styles";
+import LoadingCardSkeleton from "./LoadingCardSkeleton";
 
-const LoadingCardsCarouselSkeleton: React.FC = () => {
-  return (
-    <Carousel slidesToShow={3} dots={false}>
-      <CarouselCard>
-        <Card.Meta title={<Skeleton active />}></Card.Meta>
-      </CarouselCard>
-      <CarouselCard>
-        <Card.Meta title={<Skeleton active />}></Card.Meta>
-      </CarouselCard>
-      <CarouselCard>
-        <Card.Meta title={<Skeleton active />}></Card.Meta>
-      </CarouselCard>
-    </Carousel>
-  );
-};
+interface LoadingCardsCarouselSkeletonProps {
+  slidesToShow: number;
+}
+
+const LoadingCardsCarouselSkeleton: React.FC<LoadingCardsCarouselSkeletonProps> =
+  ({ slidesToShow }) => {
+    return (
+      <Carousel slidesToShow={3} dots={false}>
+        {[...Array(slidesToShow).map((e, i) => <LoadingCardSkeleton />)]}
+      </Carousel>
+    );
+  };
 
 export default LoadingCardsCarouselSkeleton;

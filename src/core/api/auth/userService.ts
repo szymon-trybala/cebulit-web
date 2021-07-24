@@ -127,6 +127,32 @@ async function orderBuild(orderParams: BuildOrderParams): Promise<void> {
   }
 }
 
+async function orderGeneratedBuild(
+  orderParams: BuildOrderParams
+): Promise<void> {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token || token === null || token.length < 1)
+      return Promise.reject(new Error("Błąd autoryzacji"));
+
+    const response = await fetch("api/user/orderGeneratedBuild", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(orderParams),
+    });
+    if (response.status === 401)
+      return Promise.reject(new Error("Błąd autoryzacji"));
+    if (!response.ok) return Promise.reject(new Error("Błąd serwera"));
+  } catch (error) {
+    console.error(error);
+    return Promise.reject(new Error("Błąd serwera"));
+  }
+}
+
 async function getOrderedBuilds(): Promise<BuildOrder[]> {
   try {
     const token = localStorage.getItem("token");
@@ -158,5 +184,6 @@ export const userService = {
   setTags,
   changePassword,
   orderBuild,
+  orderGeneratedBuild,
   getOrderedBuilds,
 };

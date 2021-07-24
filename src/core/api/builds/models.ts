@@ -74,6 +74,7 @@ export interface Build extends ProductSet {
   storage: Storage[];
   powerSupply: PowerSupply;
   case: Case;
+  isGeneratedForUser: boolean;
 }
 
 export interface BuildsFiltersParams {
@@ -88,7 +89,7 @@ export interface BuildsFiltersParams {
 }
 
 export const loggedInOrderByOptions = [
-  {label: "Dopasowanie do użytkownika", value: "tagMatch"}
+  { label: "Dopasowanie do użytkownika", value: "tagMatch" },
 ];
 
 export const basicBuildsOrderByOptions = [

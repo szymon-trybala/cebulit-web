@@ -30,7 +30,10 @@ const Cart: React.FC<CartProps> = ({ isModalVisible, onClose }) => {
   const handleBuyNow = async () => {
     if (!cartBuild) return;
     try {
-      await userService.orderBuild({ buildId: cartBuild.id });
+      if (cartBuild.isGeneratedForUser)
+        await userService.orderGeneratedBuild({ buildId: cartBuild.id });
+      else await userService.orderBuild({ buildId: cartBuild.id });
+
       dispatch(removeCartBuild());
       alert.success(`Zamówiono zestaw`);
       history.push(routes.orderComplete);

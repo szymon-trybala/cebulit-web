@@ -83,8 +83,8 @@ const UserTags: React.FC<UserTagsProps> = ({ onTagsUpdate }) => {
 
   return (
     <Space direction="vertical" size={8}>
-      <Row align="middle" justify="center">
-        <Col span={12}>
+      <Row>
+        <Col span={12} offset={6}>
           <MatchedTagCloudContainer>
             {loading ? (
               <LoadingTagsSkeleton />

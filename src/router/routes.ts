@@ -7,4 +7,5 @@ export const routes = {
   userSettings: "/userSettings",
   userTags: "/userTags",
   orderComplete: "/orderComplete",
+  generateBuild: "/generateBuild",
 };

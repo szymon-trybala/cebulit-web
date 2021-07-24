@@ -48,7 +48,11 @@ const BuildOrderHistory: React.FC = () => {
                 renderItem={(x) => (
                   <>
                     <BuildOrderHistoryListItem key={x.id} onClick={toggleModal}>
-                      <List.Item.Meta title={x.build.name} />
+                      <List.Item.Meta
+                        title={`${
+                          x.build.isGeneratedForUser ? "[Wygenerowany] " : ""
+                        }${x.build.name}`}
+                      />
                       <div>{x.price} zł</div>
                     </BuildOrderHistoryListItem>
                     <BuildPreview

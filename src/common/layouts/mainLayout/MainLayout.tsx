@@ -24,7 +24,9 @@ const MainLayout: React.FC = ({ children }) => {
         </Link>
         <Menu theme="light" mode="horizontal">
           <Menu.Item onClick={() => history.push(routes.list)}>Lista</Menu.Item>
-          <Menu.Item>Stwórz zestaw</Menu.Item>
+          <Menu.Item onClick={() => history.push(routes.generateBuild)}>
+            Zestaw dla Ciebie
+          </Menu.Item>
           <MainLayoutPulledRightMenuItem>
             <UserActions />
           </MainLayoutPulledRightMenuItem>

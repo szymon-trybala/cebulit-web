@@ -9,6 +9,7 @@ import BuildsList from "../features/buildsList/BuildsList";
 import UserSettings from "../features/userSettings/UserSettings";
 import UserTagsSetup from "../features/userTagsSetup/UserTagsSetup";
 import OrderComplete from "../features/orderComplete/OrderComplete";
+import GenerateBuild from "../features/generateBuild/GenerateBuild";
 
 const SwitchRoute: React.FC = () => {
   return (
@@ -35,6 +36,9 @@ const SwitchRoute: React.FC = () => {
       </Route>
       <Route path={routes.orderComplete}>
         <OrderComplete />
+      </Route>
+      <Route path={routes.generateBuild}>
+        <GenerateBuild />
       </Route>
       <Route path={routes.landing}>
         <Landing />

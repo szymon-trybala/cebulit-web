@@ -68,7 +68,32 @@ const getFiltered = createAsyncThunk<
   return builds;
 });
 
+async function generateBuild(): Promise<Build> {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch("api/builds/generateBuild", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!response || !response.ok)
+      return Promise.reject(new Error("Błąd serwera"));
+    else if (response.status === 401)
+      return Promise.reject(new Error("Błąd autoryzacji użytkownika"));
+
+    const body = (await response.json()) as Build;
+    return body;
+  } catch (error) {
+    console.error(error);
+    return Promise.reject(new Error("Błąd serwera"));
+  }
+}
+
 export const buildsService = {
   getTagMatched,
   getFiltered,
+  generateBuild,
 };

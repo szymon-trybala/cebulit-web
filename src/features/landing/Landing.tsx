@@ -77,7 +77,9 @@ const Landing: React.FC = () => {
           <Row>
             <Col span={span} offset={offset}>
               {loading ? (
-                <LoadingCardsCarouselSkeleton />
+                <LoadingCardsCarouselSkeleton
+                  slidesToShow={builds?.length || 3}
+                />
               ) : (
                 <>
                   {builds &&
