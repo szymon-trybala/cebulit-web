@@ -1,6 +1,7 @@
 import { RedoOutlined } from "@ant-design/icons";
 import { Button, Col, Row } from "antd";
 import React, { useEffect, useState } from "react";
+import FetchingErrorFeedback from "../../common/feedbacks/FetchingErrorFeedback";
 import MainLayout from "../../common/layouts/mainLayout/MainLayout";
 import Restrict from "../../common/security/Restrict";
 import LoadingCardSkeleton from "../../common/skeletons/LoadingCardSkeleton";
@@ -42,9 +43,9 @@ const GenerateBuild: React.FC = () => {
               <LoadingCardSkeleton />
             ) : (
               <>
-                {build && (
+                {build ? (
                   <>
-                    <BuildCard build={build} />
+                    <BuildCard build={build} randomImg />
                     <GenerateBuildRefreshButtonContainer>
                       <Button
                         onClick={fetchGeneratedBuild}
@@ -54,10 +55,12 @@ const GenerateBuild: React.FC = () => {
                         size="large"
                         icon={<RedoOutlined />}
                       >
-                        Odśwież
+                        Wygeneruj nowy
                       </Button>
                     </GenerateBuildRefreshButtonContainer>
                   </>
+                ) : (
+                  <FetchingErrorFeedback feedback="Błąd serwera" />
                 )}
               </>
             )}

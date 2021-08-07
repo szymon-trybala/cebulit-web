@@ -7,9 +7,10 @@ import BuildPreview from "../buildPreview/BuildPreview";
 
 interface BuildCardProps {
   build: Build;
+  randomImg?: boolean;
 }
 
-const BuildCard: React.FC<BuildCardProps> = ({ build }) => {
+const BuildCard: React.FC<BuildCardProps> = ({ build, randomImg }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
@@ -22,7 +23,14 @@ const BuildCard: React.FC<BuildCardProps> = ({ build }) => {
         cover={
           <BuildCardImage
             preview={false}
-            src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            src={
+              randomImg
+                ? "https://upload.wikimedia.org/wikipedia/commons/4/46/Question_mark_%28black%29.svg"
+                : build.photoUrl
+            }
+            width={250}
+            height={250}
+            fallback="https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png"
           />
         }
       >
@@ -36,6 +44,7 @@ const BuildCard: React.FC<BuildCardProps> = ({ build }) => {
         onOk={toggleModal}
         onCancel={toggleModal}
         visible={modalVisible}
+        randomImg={randomImg}
       />
     </>
   );

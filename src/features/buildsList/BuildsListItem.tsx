@@ -38,8 +38,10 @@ const BuildsListItem: React.FC<BuildsListItemProps> = ({ build }) => {
             <BuildListItemImage
               onClick={toggleModal}
               width={140}
+              height={140}
               preview={false}
-              src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+              src={build.photoUrl}
+              fallback="https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png"
             />
           }
           title={

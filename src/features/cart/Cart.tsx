@@ -57,8 +57,14 @@ const Cart: React.FC<CartProps> = ({ isModalVisible, onClose }) => {
               cover={
                 <CartImage
                   width="250px"
+                  height="250px"
                   preview={false}
-                  src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+                  src={
+                    cartBuild.isGeneratedForUser
+                      ? "https://upload.wikimedia.org/wikipedia/commons/4/46/Question_mark_%28black%29.svg"
+                      : cartBuild.photoUrl
+                  }
+                  fallback="https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png"
                 />
               }
               actions={[

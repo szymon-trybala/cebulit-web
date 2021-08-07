@@ -20,6 +20,7 @@ import {
 interface BuildPreviewProps {
   build: Build;
   visible: boolean;
+  randomImg?: boolean;
   onOk: () => any;
   onCancel: () => any;
 }
@@ -27,6 +28,7 @@ interface BuildPreviewProps {
 const BuildPreview: React.FC<BuildPreviewProps> = ({
   build,
   visible,
+  randomImg,
   onCancel,
   onOk,
 }) => {
@@ -59,7 +61,12 @@ const BuildPreview: React.FC<BuildPreviewProps> = ({
             <BuildPreviewHorizontalRow>
               <Image
                 preview={false}
-                src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+                src={
+                  randomImg
+                    ? "https://upload.wikimedia.org/wikipedia/commons/4/46/Question_mark_%28black%29.svg"
+                    : build.photoUrl
+                }
+                fallback="https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png"
               />
               <BuildPreviewDescriptionContainer>
                 <Paragraph>

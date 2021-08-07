@@ -64,6 +64,7 @@ interface ProductSet {
   name: string;
   description: string;
   price: number;
+  photoUrl: string;
 }
 
 export interface Build extends ProductSet {
