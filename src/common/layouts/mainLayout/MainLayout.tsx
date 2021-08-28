@@ -19,7 +19,7 @@ const MainLayout: React.FC = ({ children }) => {
   return (
     <SiteLayout>
       <SiteHeader>
-        <Link to={routes.landing}>
+        <Link to={routes.home}>
           <SiteLogo />
         </Link>
         <Menu theme="light" mode="horizontal">

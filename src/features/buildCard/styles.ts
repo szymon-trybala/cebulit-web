@@ -16,6 +16,10 @@ export const CarouselCard = styled(Card)`
 
 export const BuildCardImage = styled(Image)`
   padding: 10px;
+  max-width: 400px;
+  max-height: 400px;
+  display: block;
+  margin: auto;
 `;
 
 export const CarouselCardDescContainer = styled(Row)`

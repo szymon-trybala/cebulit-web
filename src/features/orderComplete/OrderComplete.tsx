@@ -19,16 +19,16 @@ const OrderComplete: React.FC = () => {
       <OrderCompleteDetailsContainer>
         <Title size="large">
           Pewnie zauważyłeś, że nie pytaliśmy o Twój adres. Nie przejmuj się,
-          znaliśmy go od początku.
+          komputer zostanie po prostu wysłany na losowy adres.
         </Title>
         <Divider />
         <Title size="large">
-          Czas dostawy zależy od wielu czynników, ale spokojnie - już
-          zaczęliśmy zamawiać części do Twojego komputera z Aliexpress.
+          Czas dostawy zależy od wielu czynników - twoje zamówienie dotrze do
+          Ciebie w maksymalnie 15 dni roboczych.
         </Title>
         <Divider />
         <Title size="large">
-          Jeśli masz jakieś pytania, po prostu wpadnij do siedziby naszej firmy.
+          Jeśli masz jakieś pytania, wpadnij do siedziby naszej firmy.
         </Title>
         <Divider />
         <Row align="middle" justify="center">

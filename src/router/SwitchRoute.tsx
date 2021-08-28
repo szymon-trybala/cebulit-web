@@ -4,14 +4,16 @@ import { routes } from "./routes";
 import Landing from "../features/landing/Landing";
 import Login from "../features/auth/Login";
 import Register from "../features/auth/Register";
-import Restrict from "../common/security/Restrict";
 import BuildsList from "../features/buildsList/BuildsList";
 import UserSettings from "../features/userSettings/UserSettings";
 import UserTagsSetup from "../features/userTagsSetup/UserTagsSetup";
 import OrderComplete from "../features/orderComplete/OrderComplete";
 import GenerateBuild from "../features/generateBuild/GenerateBuild";
+import { useAppSelector } from "../core/store/hooks";
 
 const SwitchRoute: React.FC = () => {
+  const user = useAppSelector((x) => x.authSlice.user);
+
   return (
     <Switch>
       <Route path={routes.login}>
@@ -22,11 +24,6 @@ const SwitchRoute: React.FC = () => {
       </Route>
       <Route path={routes.list}>
         <BuildsList />
-      </Route>
-      <Route path={routes.home}>
-        <Restrict>
-          <div>HOME</div>
-        </Restrict>
       </Route>
       <Route path={routes.userSettings}>
         <UserSettings />
@@ -40,9 +37,7 @@ const SwitchRoute: React.FC = () => {
       <Route path={routes.generateBuild}>
         <GenerateBuild />
       </Route>
-      <Route path={routes.landing}>
-        <Landing />
-      </Route>
+      <Route path={routes.home}>{user ? <BuildsList /> : <Landing />}</Route>
     </Switch>
   );
 };

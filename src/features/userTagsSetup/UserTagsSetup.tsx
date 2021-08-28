@@ -16,7 +16,7 @@ const UserTagsSetup: React.FC = () => {
   return (
     <PresentationLayout>
       <Title size="xl">Dzięki że jesteś z nami</Title>
-      <Title size="xxl">Co podać?</Title>
+      <Title size="xxl">Co lubisz?</Title>
       <UserFirstTagsSelectTagCloudContainer>
         <UserTags onTagsUpdate={handleTagsSetupComplete} />
       </UserFirstTagsSelectTagCloudContainer>

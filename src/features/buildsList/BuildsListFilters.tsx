@@ -70,6 +70,7 @@ const BuildsListFilters: React.FC = () => {
       <InlineFormItem name="maxPrice">
         <InputNumber max={filters.maxPrice} />
       </InlineFormItem>
+      <div>Sortuj:</div>
       <Form.Item name="orderBy">
         <Select
           defaultValue={orderBySettings[0].value}

@@ -65,7 +65,7 @@ const ChangePassword: React.FC = () => {
                 .length
             }
           >
-            Zaloguj
+            Zmień hasło
           </Button>
         )}
       </Form.Item>

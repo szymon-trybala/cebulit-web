@@ -24,7 +24,7 @@ const UserActions: React.FC = () => {
   const handleLogout = () => {
     dispatch(clearUser());
     localStorage.removeItem("token");
-    history.push(routes.landing);
+    history.push(routes.home);
   };
 
   const handleUserIconClick = () => {
