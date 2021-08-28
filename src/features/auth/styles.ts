@@ -8,6 +8,8 @@ export const AuthLayout = styled(Layout)`
 export const AuthContainer = styled(Layout.Content)`
   margin: 128px 128px 0;
   height: 100%;
+  width: 70vw;
+  align-self: center;
 `;
 
 export const AuthContent = styled.div`

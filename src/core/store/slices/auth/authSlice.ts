@@ -14,6 +14,11 @@ function getInitialAuthStateFromLocalStorate(): AuthSlice {
     const decoded = jwtDecode<any>(token);
     if (!decoded) return emptyAuthObject;
 
+    if (isTokenExpired(decoded)) {
+      localStorage.removeItem("token");
+      return emptyAuthObject;
+    }
+
     return {
       user: {
         id: decoded.nameid,
@@ -23,6 +28,17 @@ function getInitialAuthStateFromLocalStorate(): AuthSlice {
     };
   } catch (error) {
     return emptyAuthObject;
+  }
+}
+
+function isTokenExpired(token: any | undefined): boolean {
+  try {
+    const expireDateSeconds = token.exp as number;
+    const nowSeconds = new Date().getTime() / 1000;
+    return expireDateSeconds < nowSeconds;
+  } catch (error) {
+    console.error(`Couldn't assert if token expired: ${error}`);
+    return false;
   }
 }
 

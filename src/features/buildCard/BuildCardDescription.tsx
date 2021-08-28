@@ -1,6 +1,5 @@
-import { Col, Space } from "antd";
+import { Col } from "antd";
 import React from "react";
-import Header from "../../common/text/Header";
 import { Build } from "../../core/api/builds/models";
 import { CarouselCardDescContainer, CarouselCardDescItem } from "./styles";
 
@@ -12,7 +11,7 @@ const BuildCardDescription: React.FC<BuildCardDescriptionProps> = ({
   build,
 }) => {
   return (
-    <CarouselCardDescContainer align="bottom">
+    <CarouselCardDescContainer>
       <Col flex="1fr">
         <CarouselCardDescItem>
           Procesor: {build.processor.name}
@@ -28,12 +27,6 @@ const BuildCardDescription: React.FC<BuildCardDescriptionProps> = ({
             Karta graficzna: {build.graphicsCard.name}
           </CarouselCardDescItem>
         )}
-      </Col>
-
-      <Col flex="auto">
-        <Space align="end">
-          <Header>{build.price} zł</Header>
-        </Space>
       </Col>
     </CarouselCardDescContainer>
   );

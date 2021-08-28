@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const CarouselCard = styled(Card)`
   border-radius: 15px;
   min-height: 450px;
-  max-height: 650px;
+  max-height: 700px;
   margin: 0 10px 0 10px;
   cursor: pointer;
   :hover {
@@ -16,7 +16,6 @@ export const CarouselCard = styled(Card)`
 
 export const BuildCardImage = styled(Image)`
   padding: 10px;
-  max-height: 275px;
 `;
 
 export const CarouselCardDescContainer = styled(Row)`

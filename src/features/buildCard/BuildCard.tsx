@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Card } from "antd";
+import { Card, Space } from "antd";
 import { Build } from "../../core/api/builds/models";
 import { BuildCardImage, CarouselCard } from "./styles";
 import BuildCardDescription from "./BuildCardDescription";
 import BuildPreview from "../buildPreview/BuildPreview";
+import Header from "../../common/text/Header";
 
 interface BuildCardProps {
   build: Build;
@@ -28,8 +29,6 @@ const BuildCard: React.FC<BuildCardProps> = ({ build, randomImg }) => {
                 ? "https://upload.wikimedia.org/wikipedia/commons/4/46/Question_mark_%28black%29.svg"
                 : build.photoUrl
             }
-            width={250}
-            height={250}
             fallback="https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png"
           />
         }
@@ -38,6 +37,9 @@ const BuildCard: React.FC<BuildCardProps> = ({ build, randomImg }) => {
           title={build.name}
           description={<BuildCardDescription build={build} />}
         />
+        <Space align="end">
+          <Header>{build.price} zł</Header>
+        </Space>
       </CarouselCard>
       <BuildPreview
         build={build}
