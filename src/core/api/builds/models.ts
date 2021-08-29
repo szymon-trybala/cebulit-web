@@ -86,7 +86,12 @@ export interface BuildsFiltersParams {
   graphicsCardIds?: number[];
   storageCapacities?: number[];
   caseIds?: number[];
-  orderBy?: "name" | "nameDescending" | "price" | "priceDescending";
+  orderBy?:
+    | "name"
+    | "nameDescending"
+    | "price"
+    | "priceDescending"
+    | "tagMatch";
 }
 
 export const loggedInOrderByOptions = [
